@@ -1,0 +1,10 @@
+file:
+  # check grub configuration
+  /etc/default/grub:
+    exists: true
+    contents:
+      - GRUB_DEFAULT=0
+      - GRUB_TIMEOUT=5
+      - GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+      - GRUB_CMDLINE_LINUX_DEFAULT="panic=30"
+      - GRUB_CMDLINE_LINUX="console=ttyS0,115200 console=tty0"

@@ -1,0 +1,9 @@
+gossfile:
+  domain.yaml: {}
+  grub.yaml: {}
+  network.yaml: {}
+  packages.yaml: {}
+  pending-reboot.yaml: {}
+  services.yaml: {}
+  sshd.yaml: {}
+  systemd.yaml: {}

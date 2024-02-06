@@ -1,0 +1,36 @@
+file:
+  # check systemd-resolved configuration
+  # Note: Strings with [ ] need to be quoted
+  /etc/systemd/resolved.conf:
+    exists: true
+    contents:
+      - "[Resolve]"
+      - DNSSEC=no
+      - MulticastDNS=no
+      - LLMNR=no
+
+  # check sytemd-resolved resolv.conf
+  /etc/resolv.conf:
+    exists: true
+    filetype: symlink
+    linked-to: ../run/systemd/resolve/stub-resolv.conf
+
+  # check systemd-network configuration
+  # Note: Strings with [ ] need to be quoted
+  /etc/systemd/network/99-dhcp.network:
+    exists: true
+    contents:
+      - "[Match]"
+      - Name=en*
+      - Name=vlan*
+      - "[Network]"
+      - DHCP=ipv4
+      - IPv6AcceptRA=no
+      - LinkLocalAddressing=no
+      - EmitLLDP=true
+      - "[DHCP]"
+      - UseDomains=yes
+
+  # check /etc/network/interfaces
+  /etc/network/interfaces:
+    exists: false

@@ -1,0 +1,14 @@
+command:
+  # check for failed service units
+  systemctl --failed --no-legend:
+    exit-status: 0
+    stdout: []
+    stderr: []
+
+  # ensure that networking.service is masked
+  systemctl list-unit-files --no-legend --state=masked networking.service | wc -l:
+    exit-status: 0
+    stdout:
+    - "1"
+    stderr: []
+

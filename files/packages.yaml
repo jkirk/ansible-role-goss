@@ -1,0 +1,28 @@
+package:
+  # ensure that dbus is installed
+  dbus:
+    installed: true
+  # ensure that ifupdown + resolvconf are not installed
+  ifupdown:
+    installed: false
+  resolvconf:
+    installed: false
+  # ensure that ntp + systemd-timesyncd are not installed
+  ntp:
+    installed: false
+  systemd-timesyncd:
+    installed: false
+  chrony:
+    {{if .Vars.templatevm}}
+    installed: false
+    {{else}}
+    installed: false
+    {{end}}
+
+command:
+  # ensure that qemu-guest-agent is installed in VMs
+  if systemd-detect-virt | grep -q "kvm" ; then dpkg-query -f "\${db:Status-Status} \${db:Status-Eflag}" -W qemu-guest-agent ; else echo 'not relevant' ; fi:
+    exit-status: 0
+    stdout:
+    - "/(installed ok|not relevant)/"
+    stderr: []

@@ -1,0 +1,7 @@
+command:
+  # check for proper FQDN
+  hostname --fqdn:
+    exit-status: 0
+    stdout:
+      - "template-debian-{{ Vars.debian_release }}"
+    stderr: []

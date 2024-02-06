@@ -1,0 +1,12 @@
+service:
+  # ensure that systemd-networkd.service and systemd-resolved.service are enabled
+  systemd-networkd.service:
+    enabled: true
+    running: true
+  systemd-resolved.service:
+    enabled: true
+    running: true
+  # ensure that networking.service is stopped and not running, it should be masked too (see below)
+  networking.service:
+    enabled: false
+    running: false

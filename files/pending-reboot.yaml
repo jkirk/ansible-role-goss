@@ -1,0 +1,4 @@
+file:
+  # check for pending reboot
+  /run/reboot-required:
+    exists: false

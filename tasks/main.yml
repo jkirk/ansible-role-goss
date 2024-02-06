@@ -1,0 +1,35 @@
+---
+- name: Create /etc/goss directory
+  file:
+    state: directory
+    dest: /etc/goss
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Generate /etc/goss/vars.yaml file
+  template:
+    src: vars.yaml.j2
+    dest: /etc/goss/vars.yaml
+    owner: root
+    group: root
+    mode: 0664
+
+- name: Deploy goss + gossfiles:
+  copy:
+    srv: "{{ item }}"
+    dest: "/etc/goss/{{ item }}"
+    owner: root
+    group: root
+    mode: 0664
+  with:
+    - domain.yaml
+    - goss.yaml
+    - grub.yaml
+    - network.yaml
+    - packages.yaml
+    - pending-reboot.yaml
+    - services.yaml
+    - sshd.yaml
+    - systemd.yaml
+    - template-debian.yaml
