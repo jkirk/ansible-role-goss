@@ -1,0 +1,4 @@
+---
+goss_is_template_vm: false
+goss_version: "v0.4.4"
+goss_domain: "{{ inventory_hostname.split('.', 1)[1] }}"

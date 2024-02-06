@@ -1,3 +1,0 @@
-templatevm: {{ is_template_vm }}
-debian_release: {{ ansible_distribution_release }}
-domain: {{ inventory_hostname.split('.', 1)[1] }}

@@ -5,7 +5,7 @@
     dest: /etc/goss
     owner: root
     group: root
-    mode: 0755
+    mode: '0775'
 
 - name: Generate /etc/goss/vars.yaml file
   template:
@@ -13,16 +13,24 @@
     dest: /etc/goss/vars.yaml
     owner: root
     group: root
-    mode: 0664
+    mode: '0664'
 
-- name: Deploy goss + gossfiles:
+- name: Download goss
+  ansible.builtin.get_url:
+    url: "https://github.com/goss-org/goss/releases/download/{{ goss_version }}/goss-linux-amd64"
+    dest: "/usr/local/bin/goss"
+    owner: root
+    group: root
+    mode: '0775'
+
+- name: Deploy goss and gossfiles
   copy:
-    srv: "{{ item }}"
+    src: "{{ item }}"
     dest: "/etc/goss/{{ item }}"
     owner: root
     group: root
-    mode: 0664
-  with:
+    mode: '0664'
+  loop:
     - domain.yaml
     - goss.yaml
     - grub.yaml
