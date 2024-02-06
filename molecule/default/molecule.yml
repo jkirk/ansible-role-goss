@@ -1,0 +1,13 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: geerlingguy/docker-${MOLECULE_DISTRO:-debian12}-ansible:latest
+    override_command: false
+    pre_build_image: true
+provisioner:
+  name: ansible
+  inventory:
+    hosts:
+      instance: instance.home.syn-net.org
