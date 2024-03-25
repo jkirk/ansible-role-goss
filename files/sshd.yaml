@@ -7,7 +7,7 @@ file:
     filetype: file
     contents:
     {{if .Vars.templatevm}}
-      - "^PermitRootLogin yes"
+      - "/^PermitRootLogin\\syes/"
     {{else}}
-      - "!^PermitRootLogin yes"
+      - "!/^PermitRootLogin\\syes/"
     {{end}}

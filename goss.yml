@@ -1,0 +1,19 @@
+---
+#
+# Example:
+#
+# Note: `--ask-pass` needs "sshpass"
+#
+#   ansible-playbook -u root --ask-pass -e goss_is_template_vm=True -i $HOSTNAME, goss.yml
+#   ansible-playbook -b -i $HOSTNAME, goss.yml
+#
+# Execute on target VM:
+#
+#   goss --gossfile /etc/goss/goss.yaml --vars /etc/goss/vars.yaml validate
+
+- name: Prepare template VM to be managed by Ansible
+  hosts: all
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+  roles:
+    - role: goss

@@ -16,7 +16,7 @@ package:
     {{if .Vars.templatevm}}
     installed: false
     {{else}}
-    installed: false
+    installed: true
     {{end}}
 
 command:

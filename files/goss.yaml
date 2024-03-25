@@ -1,5 +1,9 @@
 gossfile:
+  {{if .Vars.templatevm}}
+  template-debian.yaml: {}
+  {{else}}
   domain.yaml: {}
+  {{end}}
   grub.yaml: {}
   network.yaml: {}
   packages.yaml: {}

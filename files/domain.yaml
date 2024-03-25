@@ -1,14 +1,18 @@
 command:
-  # check for proper FQDN
+  # check for proper domain
   hostname --domain:
     exit-status: 0
     stdout:
-    - "{{ .Vars.domain }}"
+      - "{{ .Vars.domain }}"
     stderr: []
 
 file:
   # check for broken DNS within e.g. xinetd, spamd,...
   /var/log/syslog:
+    {{if .Vars.templatevm}}
+    exists: false
+    {{else}}
     exists: true
     contents:
       - "!/failed to parse .*.{{ .Vars.domain }}/"
+    {{end}}
